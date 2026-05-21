@@ -1,8 +1,13 @@
 package com.solvians.showcase;
 
-/**
- * Hello world!
- */
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 public class App {
     public App(String threads, String quotes) {
 
@@ -13,9 +18,20 @@ public class App {
             int threads = Integer.parseInt(args[0]);
             int quotes = Integer.parseInt(args[1]);
 
-            CertificateUpdateGenerator generator = new CertificateUpdateGenerator(new IsinGenerator());
-            for (int i = 0; i < quotes; i++) {
-                System.out.println(generator.call());
+            ExecutorService executor = Executors.newFixedThreadPool(threads);
+            try {
+                Callable<String> generator = new CertificateUpdateGenerator(new IsinGenerator());
+                List<Future<String>> futures = executor.invokeAll(Collections.nCopies(quotes, generator));
+                for (Future<String> future : futures) {
+                    System.out.println(future.get());
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            } finally {
+                executor.shutdown();
             }
             return;
         }
