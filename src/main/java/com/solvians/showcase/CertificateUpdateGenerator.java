@@ -1,32 +1,30 @@
 package com.solvians.showcase;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Stream;
 
-public class CertificateUpdateGenerator {
-    private final int threads;
-    private final int quotes;
+public final class CertificateUpdateGenerator implements Callable<String> {
 
-    public CertificateUpdateGenerator(int threads, int quotes) {
-        this.threads = threads;
-        this.quotes = quotes;
+    private final IsinGenerator isinGenerator;
+
+    public CertificateUpdateGenerator(IsinGenerator isinGenerator) {
+        this.isinGenerator = isinGenerator;
     }
 
-    public Stream<CertificateUpdate> generateQuotes() {
+    @Override
+    public String call() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        // TODO: Implement me.
-        List<CertificateUpdate> updateList = new ArrayList<CertificateUpdate>();
-        for (int i = 0; i < threads * quotes; i++) {
-            updateList.add(placeholder());
-        }
-        return Stream.generate(this::placeholder)
-                .parallel()
-                .limit((long) threads * quotes);
+        CertificateUpdate update = new CertificateUpdate(
+                System.currentTimeMillis(),
+                isinGenerator.generate(),
+                randomPrice(random),
+                random.nextInt(1000, 5001),
+                randomPrice(random),
+                random.nextInt(1000, 10001));
+        return update.toString();
     }
 
-    private CertificateUpdate placeholder() {
-        return new CertificateUpdate(0L, "DE1234567896", 100.00, 1000, 100.00, 1000);
+    private static double randomPrice(ThreadLocalRandom random) {
+        return 100.00 + random.nextInt(10001) / 100.0;
     }
 }
