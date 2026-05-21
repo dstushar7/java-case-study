@@ -15,6 +15,7 @@ public class App {
 
             CertificateUpdateGenerator certificateUpdateGenerator = new CertificateUpdateGenerator(threads, quotes);
             certificateUpdateGenerator.generateQuotes();
+            return;
         }
         throw new RuntimeException("Expect at least number of threads and number of quotes. But got: " + args);
     }
