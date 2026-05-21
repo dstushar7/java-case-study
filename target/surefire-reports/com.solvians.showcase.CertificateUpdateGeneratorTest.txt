@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.solvians.showcase.CertificateUpdateGeneratorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.027 s <<< FAILURE! - in com.solvians.showcase.CertificateUpdateGeneratorTest
+generateQuotes  Time elapsed: 0.022 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: not <null>
+	at com.solvians.showcase.CertificateUpdateGeneratorTest.generateQuotes(CertificateUpdateGeneratorTest.java:16)
+
