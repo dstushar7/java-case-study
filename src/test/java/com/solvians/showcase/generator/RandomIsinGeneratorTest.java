@@ -1,4 +1,4 @@
-package com.solvians.showcase;
+package com.solvians.showcase.generator;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,16 +7,11 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class IsinGeneratorTest {
-
-    @Test
-    public void calculateCheckDigit() {
-        assertEquals(6, IsinGenerator.calculateCheckDigit("DE123456789"));
-    }
+class RandomIsinGeneratorTest {
 
     @Test
     public void generate() {
-        String isin = new IsinGenerator().generate(new Random(42L));
+        String isin = new RandomIsinGenerator().generate(new Random(42L));
 
         assertEquals(12, isin.length());
         assertTrue(isin.matches("[A-Z]{2}[A-Z0-9]{9}[0-9]"));

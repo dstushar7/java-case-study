@@ -1,4 +1,4 @@
-package com.solvians.showcase;
+package com.solvians.showcase.model;
 
 import org.junit.jupiter.api.Test;
 

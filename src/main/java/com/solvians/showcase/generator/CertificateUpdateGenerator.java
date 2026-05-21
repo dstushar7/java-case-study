@@ -1,4 +1,6 @@
-package com.solvians.showcase;
+package com.solvians.showcase.generator;
+
+import com.solvians.showcase.model.CertificateUpdate;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
