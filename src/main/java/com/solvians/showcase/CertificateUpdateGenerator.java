@@ -19,10 +19,14 @@ public class CertificateUpdateGenerator {
         // TODO: Implement me.
         List<CertificateUpdate> updateList = new ArrayList<CertificateUpdate>();
         for (int i = 0; i < threads * quotes; i++) {
-            updateList.add(new CertificateUpdate());
+            updateList.add(placeholder());
         }
-        return Stream.generate(CertificateUpdate::new)
+        return Stream.generate(this::placeholder)
                 .parallel()
                 .limit((long) threads * quotes);
+    }
+
+    private CertificateUpdate placeholder() {
+        return new CertificateUpdate(0L, "DE1234567896", 100.00, 1000, 100.00, 1000);
     }
 }
