@@ -21,5 +21,9 @@ public class AppTest {
         assertEquals("For input string: \"zzz\"", numbers.getMessage());
     }
 
-
+    @Test
+    public void constructorRejectsInvalidConfig() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new App(0, 5));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new App(5, -1));
+    }
 }

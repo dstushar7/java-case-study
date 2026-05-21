@@ -3,6 +3,9 @@ package com.solvians.showcase.generator;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * IsinGenerator producing uniformly-random ISINs using {@link ThreadLocalRandom}.
+ */
 public final class RandomIsinGenerator implements IsinGenerator {
 
     @Override

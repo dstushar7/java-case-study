@@ -12,6 +12,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * Feed generator entry point. Spawns a fixed thread pool that produces
+ * randomized certificate update CSV lines and prints them to stdout.
+ *
+ * The {@code quotes} argument is the total number of updates produced,
+ * not a per-thread count.
+ */
 public final class App {
 
     private final int threads;

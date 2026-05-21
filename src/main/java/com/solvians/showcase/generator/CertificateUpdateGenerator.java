@@ -5,6 +5,10 @@ import com.solvians.showcase.model.CertificateUpdate;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Callable producing one CSV-formatted certificate update per {@link #call()}.
+ * Thread-safe and stateless; a single instance can be shared across worker threads.
+ */
 public final class CertificateUpdateGenerator implements Callable<String> {
 
     private final IsinGenerator isinGenerator;

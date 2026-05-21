@@ -11,6 +11,11 @@ public final class CertificateUpdate {
     private final double askPrice;
     private final int askSize;
 
+    /**
+     * @throws IllegalArgumentException if the ISIN is null or not 12 characters,
+     *         prices are outside [100.00, 200.00], bid size is outside [1000, 5000],
+     *         or ask size is outside [1000, 10000]
+     */
     public CertificateUpdate(long timestamp, String isin,
                              double bidPrice, int bidSize,
                              double askPrice, int askSize) {
