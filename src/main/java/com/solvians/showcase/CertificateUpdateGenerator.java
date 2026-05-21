@@ -21,6 +21,8 @@ public class CertificateUpdateGenerator {
         for (int i = 0; i < threads * quotes; i++) {
             updateList.add(new CertificateUpdate());
         }
-        return Stream.generate(CertificateUpdate::new).parallel().limit((long) threads * quotes);
+        return Stream.generate(CertificateUpdate::new)
+                .parallel()
+                .limit((long) threads * quotes);
     }
 }
